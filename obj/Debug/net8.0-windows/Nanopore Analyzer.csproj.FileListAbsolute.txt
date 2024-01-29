@@ -1,0 +1,23 @@
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\Nanopore Analyzer.exe
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\Nanopore Analyzer.deps.json
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\Nanopore Analyzer.runtimeconfig.json
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\Nanopore Analyzer.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\Nanopore Analyzer.pdb
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\ABFsharp.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\OxyPlot.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\OxyPlot.WindowsForms.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Debug\net8.0-windows\TDMSReader.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.csproj.AssemblyReference.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore_Analyzer.Properties.Resources.resources
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.csproj.GenerateResource.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.AssemblyInfoInputs.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.AssemblyInfo.cs
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.csproj.CoreCompileInputs.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.csproj.CopyComplete
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\refint\Nanopore Analyzer.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.pdb
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore Analyzer.genruntimeconfig.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\ref\Nanopore Analyzer.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Debug\net8.0-windows\Nanopore_Analyzer.Form1.resources

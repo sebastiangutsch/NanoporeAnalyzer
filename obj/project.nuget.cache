@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "cX4+iL2gAowpmbJnRbmYYtM7yNeDzdsxr4SlcwzQoY9jCq51RtfvRiUhX0enGujHRO/rHY0gbMFN2jCQkAyTMA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Seb\\Desktop\\NanoporeAnalyzer\\Nanopore Analyzer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Seb\\.nuget\\packages\\abfsharp\\0.5.0\\abfsharp.0.5.0.nupkg.sha512",
+    "C:\\Users\\Seb\\.nuget\\packages\\oxyplot.core\\2.1.2\\oxyplot.core.2.1.2.nupkg.sha512",
+    "C:\\Users\\Seb\\.nuget\\packages\\oxyplot.windowsforms\\2.1.2\\oxyplot.windowsforms.2.1.2.nupkg.sha512",
+    "C:\\Users\\Seb\\.nuget\\packages\\tdmsreader\\3.1.0\\tdmsreader.3.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

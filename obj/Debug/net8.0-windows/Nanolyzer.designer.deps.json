@@ -1,0 +1,91 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ABFsharp/0.5.0": {
+        "runtime": {
+          "lib/netstandard2.0/ABFsharp.dll": {
+            "assemblyVersion": "0.5.0.0",
+            "fileVersion": "0.5.0.0"
+          }
+        }
+      },
+      "Material.Icons/2.1.6": {
+        "runtime": {
+          "lib/netstandard2.0/Material.Icons.dll": {
+            "assemblyVersion": "2.1.6.0",
+            "fileVersion": "2.1.6.0"
+          }
+        }
+      },
+      "OxyPlot.Core/2.1.2": {
+        "runtime": {
+          "lib/netstandard2.0/OxyPlot.dll": {
+            "assemblyVersion": "2.1.2.0",
+            "fileVersion": "2.1.2.0"
+          }
+        }
+      },
+      "OxyPlot.WindowsForms/2.1.2": {
+        "dependencies": {
+          "OxyPlot.Core": "2.1.2"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/OxyPlot.WindowsForms.dll": {
+            "assemblyVersion": "2.1.2.0",
+            "fileVersion": "2.1.2.0"
+          }
+        }
+      },
+      "TDMSReader/3.1.0": {
+        "runtime": {
+          "lib/netstandard2.0/TDMSReader.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ABFsharp/0.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UVvqy78jRCO1OYs+iMeLIW15QPiVnstbdzD9VUynqPl4GIwrTOdDaOfToAZ1329FrogVZcDch7chXzjeJw1BUg==",
+      "path": "abfsharp/0.5.0",
+      "hashPath": "abfsharp.0.5.0.nupkg.sha512"
+    },
+    "Material.Icons/2.1.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-z4AmhMC2UqiqLFbF8MZeLLEeMMisXnLR4tmbIWNlzJRpxjoH1TpMyrEd/5dXQnooHKc+t6rZuvqPV2hbntWCDw==",
+      "path": "material.icons/2.1.6",
+      "hashPath": "material.icons.2.1.6.nupkg.sha512"
+    },
+    "OxyPlot.Core/2.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/BuPL1Wa7ZhpKA2DBe72md+S8PgIHF+UP/NsKfO9BiheXnbns1/tqS7s2MWIR1xFy5i+PWVC67KziGPY48mNgA==",
+      "path": "oxyplot.core/2.1.2",
+      "hashPath": "oxyplot.core.2.1.2.nupkg.sha512"
+    },
+    "OxyPlot.WindowsForms/2.1.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-0RXF5bDDjJO8H/ZyE3NrrIDRVD/P9MjhcZ+Z9rlkbanHr8qZQFHn0ffe/GuTJKe8pFLZEzapDzB7wRgyUeaCIQ==",
+      "path": "oxyplot.windowsforms/2.1.2",
+      "hashPath": "oxyplot.windowsforms.2.1.2.nupkg.sha512"
+    },
+    "TDMSReader/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lfNwoALLNZCbty7wrcVj2roGII1rz2IjLsppgQtVMvT8U5hPYDPP+0GY/vbcy5Yh1ZNNOjtkoc3fG0f5cX2xEA==",
+      "path": "tdmsreader/3.1.0",
+      "hashPath": "tdmsreader.3.1.0.nupkg.sha512"
+    }
+  }
+}
