@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Seb\\Desktop\\NanoporeAnalyzer\\Nanopore Analyzer.csproj": {}
+    "C:\\Users\\sg100\\Desktop\\Applications\\Nanopore Analyzer\\Nanopore Analyzer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Seb\\Desktop\\NanoporeAnalyzer\\Nanopore Analyzer.csproj": {
+    "C:\\Users\\sg100\\Desktop\\Applications\\Nanopore Analyzer\\Nanopore Analyzer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Seb\\Desktop\\NanoporeAnalyzer\\Nanopore Analyzer.csproj",
+        "projectUniqueName": "C:\\Users\\sg100\\Desktop\\Applications\\Nanopore Analyzer\\Nanopore Analyzer.csproj",
         "projectName": "Nanopore Analyzer",
-        "projectPath": "C:\\Users\\Seb\\Desktop\\NanoporeAnalyzer\\Nanopore Analyzer.csproj",
-        "packagesPath": "C:\\Users\\Seb\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Seb\\Desktop\\NanoporeAnalyzer\\obj\\",
+        "projectPath": "C:\\Users\\sg100\\Desktop\\Applications\\Nanopore Analyzer\\Nanopore Analyzer.csproj",
+        "packagesPath": "C:\\Users\\sg100\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\sg100\\Desktop\\Applications\\Nanopore Analyzer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Seb\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sg100\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,17 +44,13 @@
         "net8.0-windows7.0": {
           "targetAlias": "net8.0-windows",
           "dependencies": {
-            "ABFsharp": {
+            "MathNet.Numerics": {
               "target": "Package",
-              "version": "[0.5.0, )"
+              "version": "[6.0.0-beta1, )"
             },
-            "OxyPlot.Core": {
+            "ScottPlot.WinForms": {
               "target": "Package",
-              "version": "[2.1.2, )"
-            },
-            "OxyPlot.WindowsForms": {
-              "target": "Package",
-              "version": "[2.1.2, )"
+              "version": "[5.0.37, )"
             },
             "TDMSReader": {
               "target": "Package",

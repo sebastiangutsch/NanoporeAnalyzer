@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Nanopore Analyzer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c735806727acaa59ae70e24c2239095c1919fe4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+164da0c444a74b871069dbb77128502b3221187f")]
 [assembly: System.Reflection.AssemblyProductAttribute("Nanopore Analyzer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Nanopore Analyzer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

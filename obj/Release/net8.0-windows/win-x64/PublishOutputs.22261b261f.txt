@@ -1,0 +1,3 @@
+C:\Users\Seb\Desktop\Nanopore Analyzer\bin\Release\net8.0-windows\publish\win-x64\Nanopore Analyzer.pdb
+C:\Users\Seb\Desktop\Nanopore Analyzer\bin\Release\net8.0-windows\publish\win-x64\libSkiaSharp.dll
+C:\Users\Seb\Desktop\Nanopore Analyzer\bin\Release\net8.0-windows\publish\win-x64\Nanopore Analyzer.exe

@@ -14,6 +14,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Nanopore_Analyzer
-build_property.ProjectDir = C:\Users\Seb\Desktop\NanoporeAnalyzer\
+build_property.ProjectDir = C:\Users\Seb\Desktop\Nanopore Analyzer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
