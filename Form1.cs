@@ -381,7 +381,7 @@
                         {
                             analyzer.DetectEventsTh((float)nud_th.Value, (int)nud_minlength.Value, nud_edfrom.Value, nud_edto.Value, false);
                         }
-                        PlotEvent(1);
+                        PlotEvent(0);
                         nud_events.Maximum = analyzer.getEventCount();
                         gb_eventanalysis.Enabled = true;
                         break;
@@ -397,7 +397,7 @@
                             analyzer.DetectEventsTh((float)nud_th.Value, (int)nud_minlength.Value, nud_edfrom.Value, nud_edto.Value, true);
                         }
                         nud_events.Maximum = analyzer.getEventCount();
-                        PlotEvent(1);
+                        PlotEvent(0);
                         gb_eventanalysis.Enabled = true;
                         break;
                     }
@@ -412,7 +412,7 @@
                             analyzer.DetectTransistions((float)nud_th.Value, (int)nud_minlength.Value, nud_edfrom.Value, nud_edto.Value);
                         }
                         nud_events.Maximum = analyzer.getEventCount();
-                        PlotEvent(1);
+                        PlotEvent(0);
                         gb_eventanalysis.Enabled = true;
                         break;
                     }

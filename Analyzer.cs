@@ -1015,6 +1015,17 @@ namespace Nanopore_Analyzer
             events = events.Where(e => e.currentlevels.Count > 0).ToList();
 
 
+            // IMPORTANT: after reassigning event numbers, the associated currentlevels must also be reassigned
+            for (int i = 0; i < events.Count; i++)
+            {
+                events[i].Id = i;
+                for (int j = 0; j < events[i].currentlevels.Count; j++)
+                {
+                    events[i].currentlevels[j].EventId = i;
+                }
+            }
+
+
             OnInfo(new InfoEvent("Total Number of Events: " + events.Count() + "\n"));
             OnInfo(new InfoEvent("Events with 1 Level: " + events.Where(e=>e.currentlevels.Count()==1).Count() + "\n"));
             OnInfo(new InfoEvent("Events with 2 Levels: " + events.Where(e => e.currentlevels.Count() == 2).Count() + "\n"));

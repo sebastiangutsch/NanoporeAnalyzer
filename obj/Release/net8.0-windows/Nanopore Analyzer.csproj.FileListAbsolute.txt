@@ -36,3 +36,41 @@ C:\Users\Seb\Desktop\Nanopore Analyzer\obj\Release\net8.0-windows\refint\Nanopor
 C:\Users\Seb\Desktop\Nanopore Analyzer\obj\Release\net8.0-windows\Nanopore Analyzer.pdb
 C:\Users\Seb\Desktop\Nanopore Analyzer\obj\Release\net8.0-windows\Nanopore Analyzer.genruntimeconfig.cache
 C:\Users\Seb\Desktop\Nanopore Analyzer\obj\Release\net8.0-windows\ref\Nanopore Analyzer.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\Nanopore Analyzer.exe
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\Nanopore Analyzer.deps.json
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\Nanopore Analyzer.runtimeconfig.json
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\Nanopore Analyzer.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\Nanopore Analyzer.pdb
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\MathNet.Numerics.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\OpenTK.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\OpenTK.GLControl.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\ScottPlot.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\ScottPlot.WinForms.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\SkiaSharp.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\SkiaSharp.Views.Desktop.Common.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\SkiaSharp.Views.WindowsForms.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\TDMSReader.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\runtimes\linux-arm\native\libSkiaSharp.so
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\runtimes\linux-arm64\native\libSkiaSharp.so
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\runtimes\linux-musl-x64\native\libSkiaSharp.so
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\runtimes\linux-x64\native\libSkiaSharp.so
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\runtimes\osx\native\libSkiaSharp.dylib
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\bin\Release\net8.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.csproj.AssemblyReference.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore_Analyzer.mainform.resources
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore_Analyzer.PlotParamForm.resources
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore_Analyzer.Properties.Resources.resources
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.csproj.GenerateResource.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.AssemblyInfoInputs.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.AssemblyInfo.cs
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.csproj.CoreCompileInputs.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.sourcelink.json
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.csproj.CopyComplete
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\refint\Nanopore Analyzer.dll
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.pdb
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\Nanopore Analyzer.genruntimeconfig.cache
+C:\Users\Seb\Desktop\NanoporeAnalyzer\obj\Release\net8.0-windows\ref\Nanopore Analyzer.dll
