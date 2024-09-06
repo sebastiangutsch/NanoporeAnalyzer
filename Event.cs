@@ -8,7 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Nanopore_Analyzer
 {
-    public class Event(int id, int startindex, int endindex)
+    public class Event(int id, int startindex, int endindex):ICloneable
     {
         public int Id { get; set; } = id;
         public int idxstart { get; set; } = startindex;
@@ -52,6 +52,18 @@ namespace Nanopore_Analyzer
                 // Return the weighted average
                 return totalValue / totalLength;
             }
+        }
+
+        public object Clone()
+        {
+            // Create a deep copy of the Event object, including its nested lists
+            return new Event(Id, idxstart, idxend)
+            {
+                hasPreBlock = this.hasPreBlock,
+                hasPostBlock = this.hasPostBlock,
+                transitions = new List<Transition>(this.transitions.ConvertAll(t => (Transition)t.Clone())),
+                currentlevels = new List<CurrentLevel>(this.currentlevels.ConvertAll(cl => (CurrentLevel)cl.Clone()))
+            };
         }
     }
 }

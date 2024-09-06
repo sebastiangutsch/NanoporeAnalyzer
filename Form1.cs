@@ -15,11 +15,15 @@
     {
         private string? filepath = null;
         private Analyzer? analyzer = null;
+
+        // Event Plot Event Handling :)
         private Scatter ev_scatter;
         private Crosshair MyCrosshair;
         private int[] EventIDs;
         private bool PlotEventsClickable = false;
         AxisSpanUnderMouse? SpanBeingDragged = null;
+
+        private HashSet<int> calculatedThs = new HashSet<int>();
 
         public mainform()
         {
@@ -27,6 +31,7 @@
             cb_detection_method.SelectedIndex = 2;
             cb_selectfilter.SelectedIndex = 0;
             cb_select_plot.SelectedIndex = 0;
+            cb_select_plot.SelectedIndex = 1;
             gb_eventdetection.Enabled = false;
             gb_eventanalysis.Enabled = false;
 
@@ -365,6 +370,7 @@
         // ------------- Event Detection ---------------
         // ---------------------------------------------
         // ---------------------------------------------
+
         private void bt_detectevents_Click(object sender, EventArgs e)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -373,6 +379,8 @@
             {
                 case 0: // simple threshold
                     {
+                        analyzer.clearAllEventData();
+                        calculatedThs.Clear();
                         if (chk_edrange.Checked)
                         {
                             analyzer.DetectEventsTh((float)nud_th.Value, (int)nud_minlength.Value, nud_edfrom.Minimum, nud_edto.Maximum, false);
@@ -384,10 +392,13 @@
                         PlotEvent(0);
                         nud_events.Maximum = analyzer.getEventCount();
                         gb_eventanalysis.Enabled = true;
+                        PlotSelectedPlot();
                         break;
                     }
                 case 1: // threshold with baseline
                     {
+                        analyzer.clearAllEventData();
+                        calculatedThs.Clear();
                         if (chk_edrange.Checked)
                         {
                             analyzer.DetectEventsTh((float)nud_th.Value, (int)nud_minlength.Value, nud_edfrom.Minimum, nud_edto.Maximum, true);
@@ -399,6 +410,7 @@
                         nud_events.Maximum = analyzer.getEventCount();
                         PlotEvent(0);
                         gb_eventanalysis.Enabled = true;
+                        PlotSelectedPlot();
                         break;
                     }
                 case 2:
@@ -411,9 +423,11 @@
                         {
                             analyzer.DetectTransistions((float)nud_th.Value, (int)nud_minlength.Value, nud_edfrom.Value, nud_edto.Value);
                         }
+                        calculatedThs.Add((int)nud_th.Value);
                         nud_events.Maximum = analyzer.getEventCount();
                         PlotEvent(0);
                         gb_eventanalysis.Enabled = true;
+                        PlotSelectedPlot();
                         break;
                     }
                 default:
@@ -434,7 +448,7 @@
                 id = 0;
             }
             (double[] t, double[] y, Event ev, int evidx) = analyzer.getEvent(id);
-            plot_event.Plot.Clear();
+            plot_event.Reset();
             var sig = plot_event.Plot.Add.SignalXY(t, y); // add event data
             sig.LineWidth = 2;
             plot_event.Plot.Axes.SetLimitsX(t.First(), t.Last());
@@ -473,7 +487,7 @@
                 scatter.MarkerColor = Colors.Green;      // Set marker color
             }
             plot_event.Refresh();
-            lb_events.Text = (evidx +1) + "/" + analyzer.getEventCount().ToString();
+            lb_events.Text = (evidx + 1) + "/" + analyzer.getEventCount().ToString();
             //nud_events.Value = (decimal)id+1;
         }
 
@@ -493,7 +507,34 @@
 
         private void nud_events_ValueChanged(object sender, EventArgs e)
         {
-            PlotEvent((int)nud_events.Value-1);
+            PlotEvent((int)nud_events.Value - 1);
+        }
+
+        private void Precalculate()
+        {
+            // unsubscribe to Info
+            analyzer.Info -= Analyzer_Info;
+            // get parameter
+            int th_min = (int)nud_tha_min.Value;
+            int th_step = (int)nud_tha_step.Value;
+            int th_max = (int)nud_tha_max.Value;
+
+            int total = (int)((th_max - th_min) / th_step) + 1;
+            pbar_precalculate.Maximum = total;
+
+            List<double> count1 = new List<double>();
+            List<double> count2 = new List<double>();
+            List<double> count2ormore = new List<double>();
+            List<int> ths = new List<int>();
+            int run = 1;
+            for (int i = th_min; i <= th_max; i += th_step)
+            {
+                analyzer.DetectTransistions((float)i, (int)nud_minlength.Value, nud_edfrom.Value, nud_edto.Value);
+                calculatedThs.Add(i);
+                PlotSelectedPlot();
+                pbar_precalculate.Value = run; run++;
+            }
+            analyzer.Info += Analyzer_Info; // subscribe again to infos
         }
 
         // ------------- Event Analysis ----------------
@@ -532,7 +573,7 @@
         {
             plot_event_analysis.Reset();
             (double[] lev, double[] dwell, int[] eventID, double[] bin, double[] counts) = analyzer.getDToverCurrentLevel((float)nud_plotmin.Value, (float)nud_plotmax.Value);
-            
+
             // set Event IDs reference
             EventIDs = new int[eventID.Length];
             EventIDs = eventID;
@@ -590,7 +631,7 @@
 
             // add first scatter plot with points
             var p1 = plot_event_analysis.Plot.Add.ScatterPoints(lev, logdt);
-            
+
             p1.LineWidth = 0;
             p1.MarkerShape = MarkerShape.FilledCircle; // Set markers to filled circles
             p1.MarkerSize = 1;                // Set marker size to small
@@ -642,7 +683,7 @@
             p1.LineWidth = 2;
 
             // add fit
-            
+
             var p2 = plot_event_analysis.Plot.Add.SignalXY(xfit, logfit, color: Colors.Red);
             p2.LineWidth = 2;
 
@@ -663,7 +704,7 @@
             plot_event_analysis.Reset();
             (double[] x, double[] y) = analyzer.getLogDwellTimeHistogram((float)nud_plotmin.Value, (float)nud_plotmax.Value);
 
-            
+
             var plt = plot_event_analysis.Plot.Add.Scatter(x, y);
             plt.LineWidth = 2;
 
@@ -727,7 +768,7 @@
 
             // add plot
             var p1 = plot_event_analysis.Plot.Add.ScatterPoints(lev, logdt);
-            
+
             p1.LineWidth = 0;
             p1.MarkerShape = MarkerShape.FilledCircle; // Set markers to filled circles
             p1.MarkerSize = 1;                // Set marker size to small
@@ -892,8 +933,22 @@
             if (SpanBeingDragged != null)
             {
                 var limits = SpanBeingDragged.Span.GetAxisLimits();
-                nud_plotmin.Value = (decimal)limits.Left;
-                nud_plotmax.Value = (decimal)limits.Right;
+                if ((decimal)limits.Left >= nud_plotmin.Minimum && (decimal)limits.Left <= nud_plotmin.Maximum)
+                {
+                    nud_plotmin.Value = (decimal)limits.Left;
+                }
+                else
+                {
+                    nud_plotmin.Value = nud_plotmin.Minimum;
+                }
+                if ((decimal)limits.Right <= nud_plotmax.Maximum && (decimal)limits.Right >= nud_plotmin.Minimum)
+                {
+                    nud_plotmax.Value = (decimal)limits.Right;
+                }
+                else
+                {
+                    nud_plotmax.Value = nud_plotmax.Maximum;
+                }
             }
 
             SpanBeingDragged = null;
@@ -994,6 +1049,75 @@
             plot_baseline.Reset();
             plot_event.Reset();
             rtb_info.Text = string.Empty;
+        }
+
+
+        private void sc_magic_ValueChanged(object sender, EventArgs e)
+        {
+            if (calculatedThs.Count == 0)
+            {
+                return;
+            }
+            int nearestValue = GetNearestAllowedValue(sc_magic.Value);
+            sc_magic.Value = nearestValue; // Update the TrackBar to the nearest allowed value
+            nud_th.Value = sc_magic.Value;
+            analyzer.DetectTransistions((float)nud_th.Value, 1, 1, 1);
+            PlotSelectedPlot();
+        }
+
+        private void PlotSelectedPlot()
+        {
+            switch (cb_select_plot.SelectedIndex)
+            {
+                case 0:
+                    PlotDwellTimeOverCurrentLevel();
+                    break;
+                case 1:
+                    PlotDwellTimeOverCurrentRatio();
+                    break;
+                case 2:
+                    PlotDwellTimeHistogram();
+                    break;
+                case 3:
+                    PlotLogDwellTimeHistogram();
+                    break;
+                case 4:
+                    PlotSigmaOverCurrentRatio();
+                    break;
+                case 5:
+                    PlotEventDurationOverCurrentRatio();
+                    break;
+                case 6:
+                    PlotEventDurationHistogram();
+                    break;
+
+            }
+        }
+
+        private void bt_precalculate_Click(object sender, EventArgs e)
+        {
+            gb_eventanalysis.Enabled = true;
+            Precalculate();
+        }
+
+        private void pb_clear_cache_Click(object sender, EventArgs e)
+        {
+            analyzer.clearAllEventData();
+            calculatedThs.Clear();
+        }
+
+        private int GetNearestAllowedValue(int value)
+        {
+            // Find the nearest allowed value
+            return calculatedThs.OrderBy(v => Math.Abs(v - value)).First();
+        }
+
+        private void bt_memory_Click(object sender, EventArgs e)
+        {
+            Process currentProcess = Process.GetCurrentProcess();
+            long memoryUsage = currentProcess.WorkingSet64;
+            double memoryUsageGB = memoryUsage / (1024.0 * 1024.0 * 1024.0); // Convert bytes to gigabytes
+            rtb_info.Text += $"Memory Usage: {memoryUsageGB:F2} GB\n";
         }
     }
 }

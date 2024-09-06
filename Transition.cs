@@ -7,7 +7,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Nanopore_Analyzer
 {
-    public class Transition(int id, int startindex, int endindex, bool up)
+    public class Transition(int id, int startindex, int endindex, bool up):ICloneable
     {
         public int Id { get; } = id;
         public int idxstart { get;} = startindex;
@@ -33,6 +33,23 @@ namespace Nanopore_Analyzer
         public string ToCSV()
         {
             return $"{Id},{idxstart},{idxend},{IsUp}, {FromBL}, {ToBL}, {IsValid}";
+        }
+        // Implementation of the ICloneable interface
+        public object Clone()
+        {
+            // Create a new instance of Transition with copied values
+            return new Transition(Id, idxstart, idxend, IsUp)
+            {
+                tstart_s = this.tstart_s,
+                tend_s = this.tend_s,
+                val_start = this.val_start,
+                val_end = this.val_end,
+                FromBL = this.FromBL,
+                ToBL = this.ToBL,
+                BLRMS = this.BLRMS,
+                BLSIG = this.BLSIG,
+                IsValid = this.IsValid
+            };
         }
     }
 }

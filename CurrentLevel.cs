@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Nanopore_Analyzer
 {
-    public class CurrentLevel(int id, int startindex, int endindex)
+    public class CurrentLevel(int id, int startindex, int endindex):ICloneable
     {
         public int Id { get; } = id;
 
@@ -56,6 +56,26 @@ namespace Nanopore_Analyzer
         {
             return $"{Id};{EventId}; {idxstart}; {idxend}; {risetime}; {falltime}; {length()}; {Irms.ToString()}; {BLRMS.ToString()}; {IoverIo.ToString()}; {Imean.ToString()}; {Isig.ToString()}; {isBL}";
         }
+        public object Clone()
+        {
+            // Create a new instance of CurrentLevel with copied values
+            return new CurrentLevel(Id, idxstart, idxend)
+            {
+                EventId = this.EventId,
+                tstart_s = this.tstart_s,
+                tend_s = this.tend_s,
+                risetime = this.risetime,
+                falltime = this.falltime,
+                Irms = this.Irms,
+                Imean = this.Imean,
+                Isig = this.Isig,
+                isBL = this.isBL,
+                BLRMS = this.BLRMS,
+                BLSIG = this.BLSIG,
+                IoverIo = this.IoverIo
+            };
+        }
 
     }
+
 }

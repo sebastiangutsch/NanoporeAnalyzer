@@ -14,6 +14,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 using NationalInstruments.Tdms;
 using MathNet.Numerics.Distributions;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Nanopore_Analyzer
 {
@@ -26,7 +27,7 @@ namespace Nanopore_Analyzer
         public string unitI;
         private double factorI;
         public int SweepCount { get; } // total number of sweeps in ABF file
-        private int tp; // total points per channel 
+        private int tp; // total points per channel
         public int ChannelCount { get; } // total number of channels
         private int activechannel; // selected channel
         public decimal SampleRate { get; set; } // sample rate in Hz
@@ -46,10 +47,15 @@ namespace Nanopore_Analyzer
 
         // DETECTION
         private int f_sigma = 3; // parameter for rectification method
-        public List<Transition> transitions = new List<Transition>(); // detected transitions
-        public List<CurrentLevel> currentlevels = new List<CurrentLevel>(); // detected currentlevels
-        public List<Event> events = new List<Event>(); // detected events
- 
+        private List<Transition> transitions = new List<Transition>(); // detected transitions
+        private List<CurrentLevel> currentlevels = new List<CurrentLevel>(); // detected currentlevels
+        private List<Event> events = new List<Event>(); // detected events
+
+        // Dictionary to store calculated lists keyed by threshold value
+        private Dictionary<int, (List<Event> Events, List<CurrentLevel> CurrentLevels)> _cache
+        = new Dictionary<int, (List<Event>, List<CurrentLevel>)>();
+
+
         public Analyzer(string filepath)
         {
             abf = new ABF(filepath);
@@ -331,7 +337,7 @@ namespace Nanopore_Analyzer
                 if (binCounts[i] > 4) // force fit at better range
                 {
                     t.Add(binCenter[i]);
-                    log.Add(Math.Log(binCounts[i]));
+                    log.Add(Math.Log10(binCounts[i]));
                     X.Add(binCenter[i]); // bincenter
                     Y.Add(binCounts[i]); // bincounts
                     pXY.Add(binCenter[i] * binCounts[i]);
@@ -455,7 +461,7 @@ namespace Nanopore_Analyzer
                 if (binCounts[i] > 4) // force fit at better range
                 {
                     t.Add(binCenter[i]);
-                    log.Add(Math.Log(binCounts[i]));
+                    log.Add(Math.Log10(binCounts[i]));
                     X.Add(binCenter[i]); // bincenter
                     Y.Add(binCounts[i]); // bincounts
                     pXY.Add(binCenter[i] * binCounts[i]);
@@ -672,6 +678,7 @@ namespace Nanopore_Analyzer
         // --------- Event Detection  ---------------
         // ------------------------------------------
         // ------------------------------------------
+        
         public void DetectEventsTh(float thvalue, int minlength, decimal starttime, decimal endtime, bool use_bl)
         {
             // determine startindex and endindex
@@ -800,6 +807,14 @@ namespace Nanopore_Analyzer
 
         public void DetectTransistions(float thval, int minlength, decimal starttime, decimal endtime)
         {
+            // check if the lists are already calculated :)
+            if (_cache.TryGetValue((int)thval, out var cachedLists))
+            {
+                events = cachedLists.Events;
+                currentlevels = cachedLists.CurrentLevels;
+                return;
+            }
+
             // determine startindex and endindex
             int starti = GetIndex(starttime);
             int endi = GetIndex(endtime) - 1;
@@ -888,6 +903,13 @@ namespace Nanopore_Analyzer
 
             BuildLevelsFromTransitions(minimumlength);
             BuildEvents();
+
+            // Deep copy the lists and add to the dictionary
+            _cache[(int)thval] = (
+                events.Select(e => (Event)e.Clone()).ToList(),
+                currentlevels.Select(cl => (CurrentLevel)cl.Clone()).ToList()
+            );
+            
         }
 
         public int getTranistionCount()
@@ -998,15 +1020,49 @@ namespace Nanopore_Analyzer
                     tr.IsValid = false;// do nothing, discard transition
                 }
             }
-            foreach (var ev in events) // add all current levels
+            //foreach (var ev in events) // add all current levels
+            //{
+            //    List<CurrentLevel> Ilevels = currentlevels.Where(lev => (lev.idxstart > ev.idxstart) && (lev.idxend < ev.idxend)).ToList();
+            //    ev.currentlevels = Ilevels; // short code, but slow
+            //    foreach (var level in ev.currentlevels)
+            //    {
+            //        level.EventId = ev.Id;
+            //    }
+            //}
+
+            // Use a single pointer to track position in currentlevels
+            int levelsIndex = 0;
+
+            foreach (var ev in events)
             {
-                List<CurrentLevel> Ilevels = currentlevels.Where(lev => (lev.idxstart > ev.idxstart) && (lev.idxend < ev.idxend)).ToList();
-                ev.currentlevels = Ilevels; // short code, but slow
-                foreach (var level in ev.currentlevels)
+                // Create a list to hold the levels for the current event
+                var Ilevels = new List<CurrentLevel>();
+
+                // Move the pointer until it finds levels that might match the current event
+                while (levelsIndex < currentlevels.Count && currentlevels[levelsIndex].idxend <= ev.idxstart)
                 {
-                    level.EventId = ev.Id;
+                    // Skip levels that end before the event starts
+                    levelsIndex++;
                 }
+
+                // Start collecting relevant levels that fit within the current event's range
+                int tempIndex = levelsIndex;
+                while (tempIndex < currentlevels.Count && currentlevels[tempIndex].idxstart < ev.idxend)
+                {
+                    if (currentlevels[tempIndex].idxstart > ev.idxstart && currentlevels[tempIndex].idxend < ev.idxend)
+                    {
+                        // Add the level if it fits within the event's range
+                        Ilevels.Add(currentlevels[tempIndex]);
+                        currentlevels[tempIndex].EventId = ev.Id; // Set EventId directly here
+                    }
+                    tempIndex++;
+                }
+
+                // Assign the collected levels to the event
+                ev.currentlevels = Ilevels;
             }
+
+
 
             // remove events, where meancurrentlevel is within baseline
             events = events.Where(e => e.meancurrentlevel() < (e.transitions[0].BLRMS - 3 * e.transitions[0].BLSIG)).ToList();
@@ -1036,6 +1092,20 @@ namespace Nanopore_Analyzer
         public int getEventCount()
         {
             return events.Count;
+        }
+
+        public void clearAllEventData()
+        {
+            _cache.Clear();
+            events.Clear();
+            transitions.Clear();
+            currentlevels.Clear();
+            
+        }
+
+        public (int, int, int) getEventStats()
+        {
+            return (events.Where(e => e.currentlevels.Count() == 1).Count(), events.Where(e => e.currentlevels.Count() == 2).Count(), events.Where(e => e.currentlevels.Count() > 2).Count());
         }
 
         // --------- Data Interface -----------------

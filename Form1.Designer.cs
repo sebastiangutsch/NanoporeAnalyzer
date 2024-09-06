@@ -60,6 +60,15 @@
             nud_baseline_interval = new NumericUpDown();
             bt_getbaseline = new Button();
             gb_eventdetection = new GroupBox();
+            pb_clear_cache = new PictureBox();
+            label22 = new Label();
+            label21 = new Label();
+            label20 = new Label();
+            pbar_precalculate = new ProgressBar();
+            bt_precalculate = new Button();
+            nud_tha_max = new NumericUpDown();
+            nud_tha_step = new NumericUpDown();
+            nud_tha_min = new NumericUpDown();
             plot_event = new ScottPlot.WinForms.FormsPlot();
             chk_edrange = new CheckBox();
             label13 = new Label();
@@ -78,6 +87,8 @@
             nud_events = new NumericUpDown();
             bt_detectevents = new Button();
             gb_eventanalysis = new GroupBox();
+            sc_magic = new TrackBar();
+            nud_bin_width = new NumericUpDown();
             bt_reset_range = new Button();
             bt_export_range = new Button();
             bt_select_range = new Button();
@@ -109,7 +120,7 @@
             plot_data = new ScottPlot.WinForms.FormsPlot();
             plot_derivative = new ScottPlot.WinForms.FormsPlot();
             plot_baseline = new ScottPlot.WinForms.FormsPlot();
-            nud_bin_width = new NumericUpDown();
+            bt_memory = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pb_delete_sweep).BeginInit();
             gb_filtering.SuspendLayout();
@@ -121,12 +132,18 @@
             ((System.ComponentModel.ISupportInitialize)nud_BLfrom).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_baseline_interval).BeginInit();
             gb_eventdetection.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pb_clear_cache).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nud_tha_max).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nud_tha_step).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nud_tha_min).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_edto).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_edfrom).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_th).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_minlength).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_events).BeginInit();
             gb_eventanalysis.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)sc_magic).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nud_bin_width).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pb_plot_options).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_plotmax).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_plotmin).BeginInit();
@@ -138,7 +155,6 @@
             ((System.ComponentModel.ISupportInitialize)nud_baseline_rms).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nud_baseline_sigma).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pb_logo).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nud_bin_width).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -434,6 +450,15 @@
             // 
             // gb_eventdetection
             // 
+            gb_eventdetection.Controls.Add(pb_clear_cache);
+            gb_eventdetection.Controls.Add(label22);
+            gb_eventdetection.Controls.Add(label21);
+            gb_eventdetection.Controls.Add(label20);
+            gb_eventdetection.Controls.Add(pbar_precalculate);
+            gb_eventdetection.Controls.Add(bt_precalculate);
+            gb_eventdetection.Controls.Add(nud_tha_max);
+            gb_eventdetection.Controls.Add(nud_tha_step);
+            gb_eventdetection.Controls.Add(nud_tha_min);
             gb_eventdetection.Controls.Add(plot_event);
             gb_eventdetection.Controls.Add(chk_edrange);
             gb_eventdetection.Controls.Add(label13);
@@ -453,10 +478,91 @@
             gb_eventdetection.Controls.Add(bt_detectevents);
             gb_eventdetection.Location = new Point(498, 560);
             gb_eventdetection.Name = "gb_eventdetection";
-            gb_eventdetection.Size = new Size(492, 412);
+            gb_eventdetection.Size = new Size(543, 412);
             gb_eventdetection.TabIndex = 14;
             gb_eventdetection.TabStop = false;
             gb_eventdetection.Text = "Event Detection";
+            // 
+            // pb_clear_cache
+            // 
+            pb_clear_cache.Image = (Image)resources.GetObject("pb_clear_cache.Image");
+            pb_clear_cache.InitialImage = (Image)resources.GetObject("pb_clear_cache.InitialImage");
+            pb_clear_cache.Location = new Point(502, 77);
+            pb_clear_cache.Name = "pb_clear_cache";
+            pb_clear_cache.Size = new Size(32, 32);
+            pb_clear_cache.SizeMode = PictureBoxSizeMode.Zoom;
+            pb_clear_cache.TabIndex = 43;
+            pb_clear_cache.TabStop = false;
+            pb_clear_cache.Click += pb_clear_cache_Click;
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(201, 86);
+            label22.Name = "label22";
+            label22.Size = new Size(33, 15);
+            label22.TabIndex = 51;
+            label22.Text = "Max:";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(108, 85);
+            label21.Name = "label21";
+            label21.Size = new Size(33, 15);
+            label21.TabIndex = 50;
+            label21.Text = "Step:";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(17, 85);
+            label20.Name = "label20";
+            label20.Size = new Size(31, 15);
+            label20.TabIndex = 49;
+            label20.Text = "Min:";
+            // 
+            // pbar_precalculate
+            // 
+            pbar_precalculate.Location = new Point(388, 83);
+            pbar_precalculate.Name = "pbar_precalculate";
+            pbar_precalculate.Size = new Size(106, 23);
+            pbar_precalculate.TabIndex = 48;
+            // 
+            // bt_precalculate
+            // 
+            bt_precalculate.Location = new Point(298, 83);
+            bt_precalculate.Name = "bt_precalculate";
+            bt_precalculate.Size = new Size(84, 23);
+            bt_precalculate.TabIndex = 47;
+            bt_precalculate.Text = "Precalculate";
+            bt_precalculate.UseVisualStyleBackColor = true;
+            bt_precalculate.Click += bt_precalculate_Click;
+            // 
+            // nud_tha_max
+            // 
+            nud_tha_max.Location = new Point(235, 83);
+            nud_tha_max.Maximum = new decimal(new int[] { 150, 0, 0, 0 });
+            nud_tha_max.Name = "nud_tha_max";
+            nud_tha_max.Size = new Size(57, 23);
+            nud_tha_max.TabIndex = 46;
+            nud_tha_max.Value = new decimal(new int[] { 20, 0, 0, 0 });
+            // 
+            // nud_tha_step
+            // 
+            nud_tha_step.Location = new Point(141, 82);
+            nud_tha_step.Name = "nud_tha_step";
+            nud_tha_step.Size = new Size(57, 23);
+            nud_tha_step.TabIndex = 45;
+            nud_tha_step.Value = new decimal(new int[] { 5, 0, 0, 0 });
+            // 
+            // nud_tha_min
+            // 
+            nud_tha_min.Location = new Point(49, 82);
+            nud_tha_min.Name = "nud_tha_min";
+            nud_tha_min.Size = new Size(56, 23);
+            nud_tha_min.TabIndex = 44;
+            nud_tha_min.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // plot_event
             // 
@@ -471,7 +577,7 @@
             chk_edrange.AutoSize = true;
             chk_edrange.Checked = true;
             chk_edrange.CheckState = CheckState.Checked;
-            chk_edrange.Location = new Point(320, 52);
+            chk_edrange.Location = new Point(410, 51);
             chk_edrange.Name = "chk_edrange";
             chk_edrange.Size = new Size(124, 19);
             chk_edrange.TabIndex = 34;
@@ -482,7 +588,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(460, 25);
+            label13.Location = new Point(441, 25);
             label13.Name = "label13";
             label13.Size = new Size(12, 15);
             label13.TabIndex = 33;
@@ -491,7 +597,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(387, 25);
+            label12.Location = new Point(368, 25);
             label12.Name = "label12";
             label12.Size = new Size(26, 15);
             label12.TabIndex = 32;
@@ -500,7 +606,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(303, 25);
+            label11.Location = new Point(284, 25);
             label11.Name = "label11";
             label11.Size = new Size(33, 15);
             label11.TabIndex = 31;
@@ -509,7 +615,7 @@
             // nud_edto
             // 
             nud_edto.Enabled = false;
-            nud_edto.Location = new Point(414, 22);
+            nud_edto.Location = new Point(395, 22);
             nud_edto.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             nud_edto.Name = "nud_edto";
             nud_edto.Size = new Size(44, 23);
@@ -519,7 +625,7 @@
             // nud_edfrom
             // 
             nud_edfrom.Enabled = false;
-            nud_edfrom.Location = new Point(336, 22);
+            nud_edfrom.Location = new Point(317, 22);
             nud_edfrom.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             nud_edfrom.Name = "nud_edfrom";
             nud_edfrom.Size = new Size(49, 23);
@@ -539,7 +645,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(18, 82);
+            label5.Location = new Point(17, 54);
             label5.Name = "label5";
             label5.Size = new Size(106, 15);
             label5.TabIndex = 28;
@@ -549,7 +655,7 @@
             // 
             cb_detection_method.FormattingEnabled = true;
             cb_detection_method.Items.AddRange(new object[] { "Simple Threshold", "Simple Threshold with BG Substraction", "Differential Rectification" });
-            cb_detection_method.Location = new Point(141, 79);
+            cb_detection_method.Location = new Point(140, 51);
             cb_detection_method.Name = "cb_detection_method";
             cb_detection_method.Size = new Size(226, 23);
             cb_detection_method.TabIndex = 27;
@@ -566,7 +672,7 @@
             // 
             // nud_minlength
             // 
-            nud_minlength.Location = new Point(235, 22);
+            nud_minlength.Location = new Point(219, 22);
             nud_minlength.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             nud_minlength.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             nud_minlength.Name = "nud_minlength";
@@ -577,7 +683,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(141, 25);
+            label4.Location = new Point(130, 25);
             label4.Name = "label4";
             label4.Size = new Size(88, 15);
             label4.TabIndex = 24;
@@ -613,7 +719,7 @@
             // 
             // bt_detectevents
             // 
-            bt_detectevents.Location = new Point(397, 79);
+            bt_detectevents.Location = new Point(459, 22);
             bt_detectevents.Name = "bt_detectevents";
             bt_detectevents.Size = new Size(75, 23);
             bt_detectevents.TabIndex = 0;
@@ -623,6 +729,7 @@
             // 
             // gb_eventanalysis
             // 
+            gb_eventanalysis.Controls.Add(sc_magic);
             gb_eventanalysis.Controls.Add(nud_bin_width);
             gb_eventanalysis.Controls.Add(bt_reset_range);
             gb_eventanalysis.Controls.Add(bt_export_range);
@@ -635,12 +742,35 @@
             gb_eventanalysis.Controls.Add(nud_plotmin);
             gb_eventanalysis.Controls.Add(bt_plot_selected_graph);
             gb_eventanalysis.Controls.Add(cb_select_plot);
-            gb_eventanalysis.Location = new Point(996, 560);
+            gb_eventanalysis.Location = new Point(1051, 560);
             gb_eventanalysis.Name = "gb_eventanalysis";
-            gb_eventanalysis.Size = new Size(489, 412);
+            gb_eventanalysis.Size = new Size(552, 412);
             gb_eventanalysis.TabIndex = 15;
             gb_eventanalysis.TabStop = false;
             gb_eventanalysis.Text = "Event Analysis";
+            // 
+            // sc_magic
+            // 
+            sc_magic.Location = new Point(489, 115);
+            sc_magic.Maximum = 120;
+            sc_magic.Minimum = 1;
+            sc_magic.Name = "sc_magic";
+            sc_magic.Orientation = Orientation.Vertical;
+            sc_magic.Size = new Size(45, 263);
+            sc_magic.TabIndex = 43;
+            sc_magic.TickFrequency = 5;
+            sc_magic.Value = 50;
+            sc_magic.ValueChanged += sc_magic_ValueChanged;
+            // 
+            // nud_bin_width
+            // 
+            nud_bin_width.DecimalPlaces = 3;
+            nud_bin_width.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            nud_bin_width.Location = new Point(160, 82);
+            nud_bin_width.Name = "nud_bin_width";
+            nud_bin_width.Size = new Size(92, 23);
+            nud_bin_width.TabIndex = 48;
+            nud_bin_width.Value = new decimal(new int[] { 1, 0, 0, 196608 });
             // 
             // bt_reset_range
             // 
@@ -956,15 +1086,15 @@
             plot_baseline.Size = new Size(1760, 150);
             plot_baseline.TabIndex = 42;
             // 
-            // nud_bin_width
+            // bt_memory
             // 
-            nud_bin_width.DecimalPlaces = 3;
-            nud_bin_width.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            nud_bin_width.Location = new Point(160, 82);
-            nud_bin_width.Name = "nud_bin_width";
-            nud_bin_width.Size = new Size(92, 23);
-            nud_bin_width.TabIndex = 48;
-            nud_bin_width.Value = new decimal(new int[] { 1, 0, 0, 196608 });
+            bt_memory.Location = new Point(1685, 48);
+            bt_memory.Name = "bt_memory";
+            bt_memory.Size = new Size(75, 23);
+            bt_memory.TabIndex = 43;
+            bt_memory.Text = "Memory";
+            bt_memory.UseVisualStyleBackColor = true;
+            bt_memory.Click += bt_memory_Click;
             // 
             // mainform
             // 
@@ -972,6 +1102,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonFace;
             ClientSize = new Size(1784, 981);
+            Controls.Add(bt_memory);
             Controls.Add(plot_baseline);
             Controls.Add(plot_derivative);
             Controls.Add(plot_data);
@@ -1021,6 +1152,10 @@
             ((System.ComponentModel.ISupportInitialize)nud_baseline_interval).EndInit();
             gb_eventdetection.ResumeLayout(false);
             gb_eventdetection.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pb_clear_cache).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nud_tha_max).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nud_tha_step).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nud_tha_min).EndInit();
             ((System.ComponentModel.ISupportInitialize)nud_edto).EndInit();
             ((System.ComponentModel.ISupportInitialize)nud_edfrom).EndInit();
             ((System.ComponentModel.ISupportInitialize)nud_th).EndInit();
@@ -1028,6 +1163,8 @@
             ((System.ComponentModel.ISupportInitialize)nud_events).EndInit();
             gb_eventanalysis.ResumeLayout(false);
             gb_eventanalysis.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)sc_magic).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nud_bin_width).EndInit();
             ((System.ComponentModel.ISupportInitialize)pb_plot_options).EndInit();
             ((System.ComponentModel.ISupportInitialize)nud_plotmax).EndInit();
             ((System.ComponentModel.ISupportInitialize)nud_plotmin).EndInit();
@@ -1039,7 +1176,6 @@
             ((System.ComponentModel.ISupportInitialize)nud_baseline_rms).EndInit();
             ((System.ComponentModel.ISupportInitialize)nud_baseline_sigma).EndInit();
             ((System.ComponentModel.ISupportInitialize)pb_logo).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nud_bin_width).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1127,5 +1263,16 @@
         private Button bt_export_range;
         private Button bt_reset_range;
         private NumericUpDown nud_bin_width;
+        private NumericUpDown nud_tha_min;
+        private Button bt_precalculate;
+        private NumericUpDown nud_tha_max;
+        private NumericUpDown nud_tha_step;
+        private TrackBar sc_magic;
+        private ProgressBar pbar_precalculate;
+        private Label label22;
+        private Label label21;
+        private Label label20;
+        private PictureBox pb_clear_cache;
+        private Button bt_memory;
     }
 }
